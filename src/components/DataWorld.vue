@@ -22,10 +22,10 @@
       <thead>
         <tr>
           <th class="text-left">
-            ID
+            Autor
           </th>
           <th class="text-left">
-            User
+            Titulo
           </th>
           <th class="text-left">
             Posts
@@ -34,9 +34,9 @@
       </thead>
       <tbody>
         <tr v-for="item in users">
-          <td>{{ item.id }}</td>
           <td>{{ item.name }}</td>
           <td v-for="(post, index) in posts.slice(0, 1)" :key="index">{{post.title}}</td>
+          <td v-for="(post, index) in posts.slice(0, 1)" :key="index">{{post.body}}</td>
         </tr>
       </tbody>
     </v-table>

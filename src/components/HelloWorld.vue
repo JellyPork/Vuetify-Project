@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <AppBar />
+    
     <v-app-bar color="yellow" app>
       
       <v-btn icon @click="drawer = !drawer">
@@ -45,7 +45,6 @@
 </template>
 
 <script>
-import AppBar from '@/layouts/default/AppBar.vue';
 export default {
   data() {
     return {
