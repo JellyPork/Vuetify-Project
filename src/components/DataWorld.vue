@@ -33,11 +33,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in users">
-          <td>{{ item.name }}</td>
-          <td v-for="(post, index) in posts.slice(0, 1)" :key="index">{{post.title}}</td>
-          <td v-for="(post, index) in posts.slice(0, 1)" :key="index">{{post.body}}</td>
+        <tr v-for="post in posts" :key="post.title">
+          <td>{{ getUser(post.userId).name }}</td>
+          <td>{{ post.title }}</td>
+          <td>{{ post.body }}</td>
         </tr>
+        
       </tbody>
     </v-table>
 
@@ -82,6 +83,16 @@ export default {
     };
     
   },
+
+  computed: {
+    userMap() {
+      // Create a map of user IDs to user objects
+      return this.users.reduce((map, user) => {
+        map[user.id] = user;
+        return map;
+      }, {});
+    }
+  },
   methods: {
     
     goToPage(route) {
@@ -112,6 +123,11 @@ export default {
       this.loading = true;
       await Promise.all([this.fetchPosts(), this.fetchUsers()]);
       this.loading = false;
+    },
+
+    getUser(userId) {
+      // Look up the user object for a given user ID
+      return this.userMap[userId];
     },
   },
   mounted() {
